@@ -9,7 +9,7 @@
 <body>
     <h1> 어떡하노 </h1>
     {% for post in posts %}
-    <li><a href="{% url 'detail' post.pk %}">{{ post.title }}</a></a></li>
+    <li><a href="{% url 'detail' post.pk %}">{{ post.title }}</a></li>
     {% endfor %}
     <a href="{% url 'new' %}">글쓰기</a>
 </body>
