@@ -7,11 +7,6 @@ from django import forms
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'contents', 'created_date', 'author')
-
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
         fields = ('title', 'contents')
 
 class UserForm(forms.ModelForm):

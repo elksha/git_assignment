@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .forms import PostForm, UserForm
+from .forms import PostForm, UserForm, CommentForm
 from django.contrib import auth
 from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
-
 
 def signup(request):
     if request.method == 'POST':
@@ -38,7 +37,7 @@ def detail(request, post_pk):
     post = Post.objects.get(pk=post_pk)
     if request.method == 'POST':
         form = CommentForm(request.POST)
-        comment = form.save(commit = False)
+        comment = form.save(commit=False)
         comment.post = post
         comment.save()
         return redirect('detail', post.pk)

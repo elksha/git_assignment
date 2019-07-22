@@ -12,7 +12,7 @@
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit" value="로그인" />
-      <input type="submit" value="회원가입" />
+      <a href="{% url 'signup' %}">회원가입</a>
     </form>
   </body>
 </html>
