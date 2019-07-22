@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import PostForm, CommentForm, UserForm
 from django.contrib import auth
-from .models import Post
+from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
+
 
 def signup(request):
     if request.method == 'POST':
@@ -35,7 +36,15 @@ def home(request):
 
 def detail(request, post_pk):
     post = Post.objects.get(pk=post_pk)
-    return render(request, 'detail.html', { 'post': post })
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        comment = form.save(commit = False)
+        comment.post = post
+        comment.save()
+        return redirect('detail', post.pk)
+    else: 
+        form = CommentForm()
+        return render(request, 'detail.html', { 'post': post, 'form' : form })
 
 @login_required
 def edit(request, post_pk):
@@ -54,4 +63,10 @@ def delete(request, post_pk):
     post.delete()
     return redirect('home')
 
+
+@login_required
+def delete_comment(request, post_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    comment.delete()
+    return redirect('detail', post_pk)
 # Create your views here.
