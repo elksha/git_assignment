@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'git_assign.apps.Git_assignConfig'
+    'git_assign.apps.GitAssignConfig',
 ]
 
 MIDDLEWARE = [
@@ -65,8 +65,12 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
     },
 ]
+
+LOGIN_REDIRECT_URL ='/'
+LOGOUT_REDIRECT_URL ='/'
 
 WSGI_APPLICATION = 'git_a.wsgi.application'
 
