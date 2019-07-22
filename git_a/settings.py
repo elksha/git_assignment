@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'git_assign.apps.Git_assignConfig'
+    'git_assign.apps.GitAssignConfig',
 ]
 
 MIDDLEWARE = [
